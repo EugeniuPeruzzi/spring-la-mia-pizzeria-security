@@ -1,0 +1,63 @@
+<!-- Head html -->
+<div th:replace="frags/frags :: headFragment"></div>
+
+<!-- name descrition foto price -->
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="text-center my-5">
+                <h1>Aggiungi una nuova pizza</h1>
+            </div>
+            <div class="col">
+                <form th:object="${pizza}" method="POST">
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <lable for="title" class="form-label">Nome</lable>
+                        <input type="text" id="title" th:field="*{name}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('name')"></div>
+
+                    </div>
+                    <!-- Descrozione -->
+                    <div class="mb-3">
+                        <lable for="description" class="form-label">Description</lable>
+                        <textarea type="text" id="description" th:field="*{description}"
+                            class="form-control"></textarea>
+                        <div th:replace="frags/frags :: errorDiv('description')"></div>
+                    </div>
+                    <!-- Foto -->
+                    <div class="mb-3">
+                        <lable for="foto" class="form-label">Foto indirizzo url</lable>
+                        <input type="text" id="foto" th:field="*{foto}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('foto')"></div>
+                    </div>
+                    <!-- Prezzo -->
+                    <div class="mb-3">
+                        <lable for="price" class="form-label">Prezzo</lable>
+                        <input type="text" id="price" th:field="*{price}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('price')"></div>
+                    </div>
+
+                    <!-- ingredienti -->
+                    <!-- <div class="mb-3">
+                        <lable for="ingredients" class="form-label">Prezzo</lable>
+                        <input type="checkbox" id="ingredients" th:field="*{ingredients}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('ingredients')"></div>
+                    </div> -->
+
+                    <div th:each="ingredient : ${ingredients}" class="mb-3">
+                        <input type="checkbox" th:id="${'ingredient-' + ingredient.id}" th:value="${ingredient.id}"
+                            name="ingredients" th:field="${pizza.ingredients}">
+                        <label th:for="${'ingredient-' + ingredient.id}">[[${ingredient.name}]]</label>
+                        <div th:replace="frags/frags :: errorDiv('ingredients')"></div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary" value="STORE">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

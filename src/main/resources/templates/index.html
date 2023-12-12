@@ -1,0 +1,61 @@
+<!-- Head html -->
+<div th:replace="frags/frags :: headFragment"></div>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mt-4">Che voglia di pizza....</h1>
+            <!-- Frammento di ricerca -->
+            <div th:replace="frags/frags :: searchFrag"></div>
+            <!-- Pulsante per aggiungere una nuova pizza -->
+            <div class="col-12 d-flex justify-content-center">
+                <a href="/pizza/create">
+                    <button class="btn btn-success ms-2" type="button">Add pizzza</button>
+                </a>
+                <a href="/ingredients">
+                    <button class="btn btn-success ms-2" type="button">+ Ingredienti</button>
+                </a>
+            </div>
+            <!-- Lista delle pizze -->
+            <div class="col-12">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <!-- Messaggio se non ci sono pizze -->
+                    <div th:if="${pizze.isEmpty()}">
+                        <h1>ma non sono sold out</h1>
+                    </div>
+                    <!-- Loop attraverso tutte le pizze -->
+                    <div class="m-3" th:each="pizza : ${pizze}">
+                        <!-- Card per ogni pizza -->
+                        <div class="card" style="width: 18rem;">
+                            <!-- Immagine della pizza -->
+                            <img th:src="${pizza.getFoto()}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <!-- Nome della pizza -->
+                                <h5>[[${pizza.getName()}]]</h5>
+                                <!-- Descrizione della pizza -->
+                                <p class="card-text">[[${pizza.getDescription()}]]</p>
+                                <!-- Prezzo della pizza -->
+                                <h5 th:text="|${#numbers.formatDecimal(pizza.getPrice(), 1, 2)}$|"></h5>
+                                <!-- Link per vedere i dettagli della pizza -->
+                                <a th:href="@{/pizza/{pizzaId}(pizzaId=${pizza.getId()})}"
+                                    class="btn btn-sm btn-primary">Vedi
+                                    la pizza</a>
+                                <!-- Link per modificare la pizza -->
+                                <a th:href="@{/pizza/edit/{pizzaId}(pizzaId=${pizza.getId()})}"
+                                    class="btn btn-sm btn-warning">Modifica</a>
+								<!-- Form per cancellare  -->
+                                <form class="d-inline-block" onsubmit="return confirm('Are you sure?')"
+                                    th:action="@{/pizza/delete/{pizzaId}(pizzaId=${pizza.getId()})}" method="POST">
+
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

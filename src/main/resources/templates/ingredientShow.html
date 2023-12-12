@@ -1,0 +1,42 @@
+<!-- Head html -->
+<div th:replace="frags/frags :: headFragment"></div>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mt-5">Lista ingredienti</h1>
+            <div class="col-6 mt-5">
+                <a th:href="@{/}" class="btn btn-primary">Back</a>
+            </div>
+            <div class="col-6 mt-5 d-flex justify-content-end">
+                <a th:href="@{/ingredient/new}" class="btn btn-success">Nuovo ingrediente</a>
+            </div>
+            <div class="col-12 mt-5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome Ingrediente</th>
+                            <td scope="col" class=" text-end">Operazioni</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ingredient : ${ingredients}">
+                            <td th:text="${ingredient.name}"></td>
+                            <td class="d-flex justify-content-end">
+                                <form class="d-inline-block" onsubmit="return confirm('Are you sure?')"
+                                    th:action="@{/ingredient/delete/{id}(id=${ingredient.id})}" method="POST">
+
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

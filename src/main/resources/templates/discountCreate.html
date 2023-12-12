@@ -1,0 +1,38 @@
+<!-- Head html -->
+<div th:replace="frags/frags :: headFragment"></div>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Offerta Pizza</h1>
+            <div class="col">
+                <form method="post" th:object="${discount}">
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <lable for="title" class="form-label">Nome offerta</lable>
+                        <input type="text" id="title" th:field="*{titolo}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('titolo')"></div>
+                    </div>
+                    <!-- Data di inizio -->
+                    <div class="mb-3">
+                        <lable for="dataDiInizio" class="form-label">Inizio Offerta</lable>
+                        <input type="date" name="dataDiInizio" id="dataDiInizio" th:field="*{dataDiInizio}"
+                            class="form-control" />
+                        <div th:replace="frags/frags :: errorDiv('dataDiInizio')"></div>
+                    </div>
+                    <!-- Data di fine -->
+                    <div class="mb-3">
+                        <lable for="dataDiFine" class="form-label">Fine offerta</lable>
+                        <input type="date" name="dataDiFine" id="dataDiFine" th:field="*{dataDiFine}"
+                            class="form-control" />
+                        <div th:replace="frags/frags :: errorDiv('dataDiFine')"></div>
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary" value="STORE">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!-- Head html -->
+<div th:replace="frags/frags :: headFragment"></div>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Aggiungi ingrediente</h1>
+            <div class="col">
+                <form method="post" th:object="${ingredient}">
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <lable for="name" class="form-label">Nome ingrediente</lable>
+                        <input type="text" id="name" th:field="*{name}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('name')"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
