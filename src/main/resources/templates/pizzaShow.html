@@ -18,7 +18,7 @@
                             <h5 th:text="|${#numbers.formatDecimal(pizza.getPrice(), 1, 2)}$|"></h5>
                             <a th:href="@{/}" class="btn btn-primary">Back</a>
                             <a th:href="@{/pizzas/{pizzaId}/discount (pizzaId=${pizza.getId()})}"
-                                class="btn btn-success">Nuova Offerta</a>
+                                class="btn btn-success" sec:authorize="hasAuthority('admin')">Nuova Offerta</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                         [[${discount.getDataDiFine()}]]</h5>
 
                     <a th:href="@{/pizzas/{pizzaId}/discount/edit/{discountId} (pizzaId=${pizza.getId()}, discountId=${discount.getId()})}"
-                        class="btn btn-sm btn-warning">Modifica Offerta</a>
+                        class="btn btn-sm btn-warning" sec:authorize="hasAuthority('admin')">Modifica Offerta</a>
 
                 </div>
                 <table class="table">

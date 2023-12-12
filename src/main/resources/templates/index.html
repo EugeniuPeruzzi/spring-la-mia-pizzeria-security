@@ -8,7 +8,7 @@
             <!-- Frammento di ricerca -->
             <div th:replace="frags/frags :: searchFrag"></div>
             <!-- Pulsante per aggiungere una nuova pizza -->
-            <div class="col-12 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center" sec:authorize="hasAnyAuthority('admin')">
                 <a href="/pizza/create">
                     <button class="btn btn-success ms-2" type="button">Add pizzza</button>
                 </a>
@@ -42,10 +42,11 @@
                                     la pizza</a>
                                 <!-- Link per modificare la pizza -->
                                 <a th:href="@{/pizza/edit/{pizzaId}(pizzaId=${pizza.getId()})}"
-                                    class="btn btn-sm btn-warning">Modifica</a>
-								<!-- Form per cancellare  -->
+                                    class="btn btn-sm btn-warning" sec:authorize="hasAuthority('admin')">Modifica</a>
+                                <!-- Form per cancellare  -->
                                 <form class="d-inline-block" onsubmit="return confirm('Are you sure?')"
-                                    th:action="@{/pizza/delete/{pizzaId}(pizzaId=${pizza.getId()})}" method="POST">
+                                    th:action="@{/pizza/delete/{pizzaId}(pizzaId=${pizza.getId()})}" method="POST"
+                                    sec:authorize="hasAuthority('admin')">
 
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </form>
