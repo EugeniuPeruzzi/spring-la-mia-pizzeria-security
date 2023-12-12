@@ -3,6 +3,10 @@ package org.java.spring;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.java.spring.auth.db.pojo.Role;
+import org.java.spring.auth.db.pojo.User;
+import org.java.spring.auth.db.serv.RoleService;
+import org.java.spring.auth.db.serv.UserService;
 import org.java.spring.db.pojo.Discount;
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
@@ -26,6 +30,13 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	@Autowired
 	private IngredientService ingredientService;
 	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserService userService;
+	
+    
     
     public static void main(String[] args) {
         SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -58,6 +69,18 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
     	ingredientService.save(new Ingredient("Funghi"));
     	ingredientService.save(new Ingredient("Prosciutto"));
     	ingredientService.save(new Ingredient("Salamino"));
+    	
+    	Role user = new Role("user");
+    	Role admin = new Role("admin");
+    	
+    	roleService.save(user);
+    	roleService.save(admin);
+    	
+    	
+    	userService.save(new User("user1", "pwd1", user));
+    	userService.save(new User("user2", "pwd2", admin)); 
+    	
+    	
 
     	
     }
