@@ -6,7 +6,6 @@ import java.util.List;
 import org.java.spring.db.pojo.Discount;
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
-import org.java.spring.db.repo.IngredientRepo;
 import org.java.spring.db.serv.DiscountService;
 import org.java.spring.db.serv.IngredientService;
 import org.java.spring.db.serv.PizzaService;
