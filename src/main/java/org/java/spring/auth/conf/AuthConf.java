@@ -27,7 +27,7 @@ public class AuthConf {
             .requestMatchers("/ingredients**").hasAuthority("admin")
             .requestMatchers("/ingredient/new**").hasAuthority("admin")
             .requestMatchers("/ingredient/delete/{id}**").hasAuthority("admin")
-            .requestMatchers("/**").permitAll()
+            .requestMatchers("/**").hasAnyAuthority("user" , "admin")
             .and().formLogin()
             .and().logout();
         
