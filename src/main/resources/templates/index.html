@@ -5,6 +5,7 @@
     <div class="container">
         <div class="row">
             <h1 class="text-center mt-4">Che voglia di pizza....</h1>
+            <span sec:authentication="name"></span>
             <!-- Frammento di ricerca -->
             <div th:replace="frags/frags :: searchFrag"></div>
             <!-- Pulsante per aggiungere una nuova pizza -->

@@ -7,6 +7,8 @@
             <h1 class="text-center">Offerta Pizza</h1>
             <div class="col">
                 <form method="post" th:object="${discount}">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
                     <!-- Name -->
                     <div class="mb-3">
                         <lable for="title" class="form-label">Nome offerta</lable>
