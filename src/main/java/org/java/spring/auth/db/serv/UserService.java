@@ -11,31 +11,34 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
 	
 	@Autowired
 	public UserRepo userRepo;
 	
-	
+	// Restituisce una lista di tutti gli utenti nel repository.
 	public List<User> findAll() {
-		
 		return userRepo.findAll();
 	}
+	
+	// Trova un utente per ID.
 	public User findById(int id) {
-		
 		return userRepo.findById(id).get();
 	}
 	
+	// Salva un utente nel repository.
 	public void save(User user) {
-		
 		userRepo.save(user);
 	}
 	
+	// Implementazione del metodo di caricamento dell'utente basato sul nome utente.
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepo.findByUsername(username);
 		
-		if (user == null) throw new UsernameNotFoundException("Username not found");
+		if (user == null) {
+			throw new UsernameNotFoundException("Username not found");
+		}
 		
 		return user;
 	}

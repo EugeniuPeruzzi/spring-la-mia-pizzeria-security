@@ -7,7 +7,7 @@
             <h1 class="text-center">Aggiungi ingrediente</h1>
             <div class="col">
                 <form method="post" th:object="${ingredient}">
-					
+                    <!-- CSRF TOKE PER IL FORM AUTENTICATO -->
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                     <!-- Name -->
