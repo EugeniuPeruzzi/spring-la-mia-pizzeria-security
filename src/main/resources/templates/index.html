@@ -3,6 +3,10 @@
 
 <body>
     <div class="container">
+        <div class="d-flex justify-content-end mt-5">
+            <a th:href="@{/login}" class="btn btn-primary me-2">Log-In</a>
+            <a th:href="@{/logout}" class="btn btn-secondary">Log-Out</a>
+        </div>
         <div class="row">
             <h1 class="text-center mt-4">Che voglia di pizza....</h1>
             <span sec:authentication="name"></span>
