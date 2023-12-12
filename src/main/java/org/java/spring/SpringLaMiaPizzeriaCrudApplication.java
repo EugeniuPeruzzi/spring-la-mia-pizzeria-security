@@ -3,6 +3,7 @@ package org.java.spring;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.java.spring.auth.conf.AuthConf;
 import org.java.spring.auth.db.pojo.Role;
 import org.java.spring.auth.db.pojo.User;
 import org.java.spring.auth.db.serv.RoleService;
@@ -76,9 +77,10 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
     	roleService.save(user);
     	roleService.save(admin);
     	
+    	String pwd = AuthConf.passwordEncoder().encode("asd");
     	
-    	userService.save(new User("user1", "pwd1", user));
-    	userService.save(new User("user2", "pwd2", admin)); 
+    	userService.save(new User("user1", pwd, user));
+    	userService.save(new User("user2", pwd, admin)); 
     	
     	
 
